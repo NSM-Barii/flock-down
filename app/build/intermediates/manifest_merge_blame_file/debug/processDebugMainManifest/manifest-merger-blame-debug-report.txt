@@ -1,0 +1,190 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.flockdown.app"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:4:5-67
+11-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:4:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:5:5-79
+12-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:5:22-76
+13    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+13-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:6:5-76
+13-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:6:22-73
+14    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+14-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:7:5-77
+14-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:7:22-74
+15    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+15-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:8:5-86
+15-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:8:22-83
+16    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+16-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:9:5-79
+16-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:9:22-76
+17    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+17-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:10:5-81
+17-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:10:22-78
+18    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+18-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:11:5-85
+18-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:11:22-82
+19    <uses-permission android:name="android.permission.WAKE_LOCK" />
+19-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:12:5-68
+19-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:12:22-65
+20    <uses-permission
+20-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:13:5-14:38
+21        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+21-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:13:22-78
+22        android:maxSdkVersion="28" />
+22-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:14:9-35
+23
+24    <permission
+24-->[androidx.core:core:1.12.0] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/281a98b1037113138a57aeeaa49eb20a/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+25        android:name="com.flockdown.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+25-->[androidx.core:core:1.12.0] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/281a98b1037113138a57aeeaa49eb20a/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+26        android:protectionLevel="signature" />
+26-->[androidx.core:core:1.12.0] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/281a98b1037113138a57aeeaa49eb20a/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+27
+28    <uses-permission android:name="com.flockdown.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+28-->[androidx.core:core:1.12.0] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/281a98b1037113138a57aeeaa49eb20a/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+28-->[androidx.core:core:1.12.0] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/281a98b1037113138a57aeeaa49eb20a/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
+29
+30    <supports-screens
+30-->[org.osmdroid:osmdroid-android:6.1.20] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/3f01ff782863248f83903be85d47d2b8/transformed/jetified-osmdroid-android-6.1.20/AndroidManifest.xml:9:5-12:40
+31        android:anyDensity="true"
+31-->[org.osmdroid:osmdroid-android:6.1.20] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/3f01ff782863248f83903be85d47d2b8/transformed/jetified-osmdroid-android-6.1.20/AndroidManifest.xml:10:9-34
+32        android:largeScreens="true"
+32-->[org.osmdroid:osmdroid-android:6.1.20] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/3f01ff782863248f83903be85d47d2b8/transformed/jetified-osmdroid-android-6.1.20/AndroidManifest.xml:11:9-36
+33        android:normalScreens="true" />
+33-->[org.osmdroid:osmdroid-android:6.1.20] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/3f01ff782863248f83903be85d47d2b8/transformed/jetified-osmdroid-android-6.1.20/AndroidManifest.xml:12:9-37
+34
+35    <uses-feature
+35-->[org.osmdroid:osmdroid-android:6.1.20] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/3f01ff782863248f83903be85d47d2b8/transformed/jetified-osmdroid-android-6.1.20/AndroidManifest.xml:14:5-16:36
+36        android:name="android.hardware.location.network"
+36-->[org.osmdroid:osmdroid-android:6.1.20] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/3f01ff782863248f83903be85d47d2b8/transformed/jetified-osmdroid-android-6.1.20/AndroidManifest.xml:15:9-57
+37        android:required="false" />
+37-->[org.osmdroid:osmdroid-android:6.1.20] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/3f01ff782863248f83903be85d47d2b8/transformed/jetified-osmdroid-android-6.1.20/AndroidManifest.xml:16:9-33
+38    <uses-feature
+38-->[org.osmdroid:osmdroid-android:6.1.20] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/3f01ff782863248f83903be85d47d2b8/transformed/jetified-osmdroid-android-6.1.20/AndroidManifest.xml:17:5-19:36
+39        android:name="android.hardware.location.gps"
+39-->[org.osmdroid:osmdroid-android:6.1.20] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/3f01ff782863248f83903be85d47d2b8/transformed/jetified-osmdroid-android-6.1.20/AndroidManifest.xml:18:9-53
+40        android:required="false" />
+40-->[org.osmdroid:osmdroid-android:6.1.20] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/3f01ff782863248f83903be85d47d2b8/transformed/jetified-osmdroid-android-6.1.20/AndroidManifest.xml:19:9-33
+41    <uses-feature
+41-->[org.osmdroid:osmdroid-android:6.1.20] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/3f01ff782863248f83903be85d47d2b8/transformed/jetified-osmdroid-android-6.1.20/AndroidManifest.xml:20:5-22:36
+42        android:name="android.hardware.telephony"
+42-->[org.osmdroid:osmdroid-android:6.1.20] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/3f01ff782863248f83903be85d47d2b8/transformed/jetified-osmdroid-android-6.1.20/AndroidManifest.xml:21:9-50
+43        android:required="false" />
+43-->[org.osmdroid:osmdroid-android:6.1.20] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/3f01ff782863248f83903be85d47d2b8/transformed/jetified-osmdroid-android-6.1.20/AndroidManifest.xml:22:9-33
+44    <uses-feature
+44-->[org.osmdroid:osmdroid-android:6.1.20] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/3f01ff782863248f83903be85d47d2b8/transformed/jetified-osmdroid-android-6.1.20/AndroidManifest.xml:23:5-25:36
+45        android:name="android.hardware.wifi"
+45-->[org.osmdroid:osmdroid-android:6.1.20] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/3f01ff782863248f83903be85d47d2b8/transformed/jetified-osmdroid-android-6.1.20/AndroidManifest.xml:24:9-45
+46        android:required="false" />
+46-->[org.osmdroid:osmdroid-android:6.1.20] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/3f01ff782863248f83903be85d47d2b8/transformed/jetified-osmdroid-android-6.1.20/AndroidManifest.xml:25:9-33
+47
+48    <application
+48-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:16:5-43:19
+49        android:name="com.flockdown.app.App"
+49-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:17:9-28
+50        android:allowBackup="true"
+50-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:18:9-35
+51        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+51-->[androidx.core:core:1.12.0] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/281a98b1037113138a57aeeaa49eb20a/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
+52        android:debuggable="true"
+53        android:extractNativeLibs="false"
+54        android:keepScreenOn="true"
+54-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:21:9-36
+55        android:label="Flock-Down"
+55-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:19:9-35
+56        android:networkSecurityConfig="@xml/network_security_config"
+56-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:22:9-69
+57        android:theme="@style/Theme.FlockDown"
+57-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:20:9-47
+58        android:usesCleartextTraffic="true" >
+58-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:23:9-44
+59        <activity
+59-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:25:9-34:20
+60            android:name="com.flockdown.app.MainActivity"
+60-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:26:13-41
+61            android:exported="true"
+61-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:27:13-36
+62            android:screenOrientation="landscape"
+62-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:28:13-50
+63            android:windowSoftInputMode="stateHidden" >
+63-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:29:13-54
+64            <intent-filter>
+64-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:30:13-33:29
+65                <action android:name="android.intent.action.MAIN" />
+65-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:31:17-69
+65-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:31:25-66
+66
+67                <category android:name="android.intent.category.LAUNCHER" />
+67-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:32:17-77
+67-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:32:27-74
+68            </intent-filter>
+69        </activity>
+70        <activity
+70-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:36:9-92
+71            android:name="com.flockdown.app.SettingsActivity"
+71-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:36:19-51
+72            android:screenOrientation="landscape" />
+72-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:36:52-89
+73        <activity
+73-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:37:9-87
+74            android:name="com.flockdown.app.LogActivity"
+74-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:37:19-46
+75            android:screenOrientation="landscape" />
+75-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:37:47-84
+76
+77        <service
+77-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:39:9-41:56
+78            android:name="com.flockdown.app.ProximityService"
+78-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:40:13-45
+79            android:foregroundServiceType="location" />
+79-->/Users/jabarilucien/Documents/nsm_tools/flock-down/app/src/main/AndroidManifest.xml:41:13-53
+80
+81        <activity
+81-->[com.google.android.gms:play-services-base:18.5.0] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/048c57b6a415c652525ae5056d2011cd/transformed/jetified-play-services-base-18.5.0/AndroidManifest.xml:5:9-173
+82            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+82-->[com.google.android.gms:play-services-base:18.5.0] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/048c57b6a415c652525ae5056d2011cd/transformed/jetified-play-services-base-18.5.0/AndroidManifest.xml:5:19-85
+83            android:exported="false"
+83-->[com.google.android.gms:play-services-base:18.5.0] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/048c57b6a415c652525ae5056d2011cd/transformed/jetified-play-services-base-18.5.0/AndroidManifest.xml:5:146-170
+84            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+84-->[com.google.android.gms:play-services-base:18.5.0] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/048c57b6a415c652525ae5056d2011cd/transformed/jetified-play-services-base-18.5.0/AndroidManifest.xml:5:86-145
+85
+86        <meta-data
+86-->[com.google.android.gms:play-services-basement:18.4.0] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/32a3cc3c0eddca79e5be23b1ee1b2ec6/transformed/jetified-play-services-basement-18.4.0/AndroidManifest.xml:6:9-122
+87            android:name="com.google.android.gms.version"
+87-->[com.google.android.gms:play-services-basement:18.4.0] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/32a3cc3c0eddca79e5be23b1ee1b2ec6/transformed/jetified-play-services-basement-18.4.0/AndroidManifest.xml:6:20-65
+88            android:value="@integer/google_play_services_version" />
+88-->[com.google.android.gms:play-services-basement:18.4.0] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/32a3cc3c0eddca79e5be23b1ee1b2ec6/transformed/jetified-play-services-basement-18.4.0/AndroidManifest.xml:6:66-119
+89
+90        <provider
+90-->[androidx.emoji2:emoji2:1.2.0] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/604c9422676003b6f40b5f9c73bcffc3/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+91            android:name="androidx.startup.InitializationProvider"
+91-->[androidx.emoji2:emoji2:1.2.0] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/604c9422676003b6f40b5f9c73bcffc3/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+92            android:authorities="com.flockdown.app.androidx-startup"
+92-->[androidx.emoji2:emoji2:1.2.0] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/604c9422676003b6f40b5f9c73bcffc3/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+93            android:exported="false" >
+93-->[androidx.emoji2:emoji2:1.2.0] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/604c9422676003b6f40b5f9c73bcffc3/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+94            <meta-data
+94-->[androidx.emoji2:emoji2:1.2.0] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/604c9422676003b6f40b5f9c73bcffc3/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+95                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+95-->[androidx.emoji2:emoji2:1.2.0] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/604c9422676003b6f40b5f9c73bcffc3/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+96                android:value="androidx.startup" />
+96-->[androidx.emoji2:emoji2:1.2.0] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/604c9422676003b6f40b5f9c73bcffc3/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+97            <meta-data
+97-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/cf11917d72a4094166029997e7a21e91/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+98                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+98-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/cf11917d72a4094166029997e7a21e91/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+99                android:value="androidx.startup" />
+99-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/jabarilucien/.gradle/caches/9.0.0/transforms/cf11917d72a4094166029997e7a21e91/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+100        </provider>
+101    </application>
+102
+103</manifest>

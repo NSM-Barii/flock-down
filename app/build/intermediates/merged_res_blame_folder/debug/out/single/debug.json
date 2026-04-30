@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "com.flockdown.app-merged_res-25:/layout_activity_main.xml.flat",
+        "source": "com.flockdown.app-main-27:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.flockdown.app-merged_res-25:/layout_activity_log.xml.flat",
+        "source": "com.flockdown.app-main-27:/layout/activity_log.xml"
+    },
+    {
+        "merged": "com.flockdown.app-merged_res-25:/layout_item_log.xml.flat",
+        "source": "com.flockdown.app-main-27:/layout/item_log.xml"
+    },
+    {
+        "merged": "com.flockdown.app-merged_res-25:/raw_alpr_cameras.csv.flat",
+        "source": "com.flockdown.app-main-27:/raw/alpr_cameras.csv"
+    },
+    {
+        "merged": "com.flockdown.app-merged_res-25:/layout_activity_settings.xml.flat",
+        "source": "com.flockdown.app-main-27:/layout/activity_settings.xml"
+    }
+]

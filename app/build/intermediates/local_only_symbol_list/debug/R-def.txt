@@ -1,0 +1,30 @@
+R_DEF: Internal format may change without notice
+local
+id btnClearLog
+id btnLog
+id btnResetLifetime
+id btnSettings
+id layoutFlockAlert
+id map
+id recyclerLog
+id switchFlockOnly
+id switchShowLifetime
+id switchShowSession
+id tvAlert
+id tvFlockDist
+id tvLogCoords
+id tvLogCount
+id tvLogTime
+id tvLogTitle
+id tvNearest
+id tvSession
+id tvSessionLabel
+id tvSpeed
+id tvTotal
+id tvTotalLabel
+layout activity_log
+layout activity_main
+layout activity_settings
+layout item_log
+raw alpr_cameras
+style Theme.FlockDown
