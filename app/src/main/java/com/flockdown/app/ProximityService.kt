@@ -7,15 +7,19 @@ import android.media.ToneGenerator
 import android.media.AudioManager
 import android.os.*
 import android.location.Location
+import android.speech.tts.TextToSpeech
 import androidx.core.app.NotificationCompat
 import com.google.android.gms.location.*
+import java.util.Locale
 
 class ProximityService : Service() {
 
     private lateinit var fusedClient: FusedLocationProviderClient
     private lateinit var locationCallback: LocationCallback
     private lateinit var prefs: SharedPreferences
-    private val toneGen by lazy { ToneGenerator(AudioManager.STREAM_ALARM, 100) }
+    private lateinit var locationThread: HandlerThread
+    private val toneGen by lazy { ToneGenerator(AudioManager.STREAM_MUSIC, 100) }
+    private var tts: TextToSpeech? = null
 
     private var lastBeepTime = 0L
     private val beepCooldownMs = 10_000L
@@ -30,6 +34,9 @@ class ProximityService : Service() {
         prefs = getSharedPreferences(PREFS, MODE_PRIVATE)
         CameraStore.load(this)
         fusedClient = LocationServices.getFusedLocationProviderClient(this)
+        tts = TextToSpeech(this) { status ->
+            if (status == TextToSpeech.SUCCESS) tts?.language = Locale.US
+        }
         startForeground(1, buildNotification())
         startLocationUpdates()
     }
@@ -46,18 +53,16 @@ class ProximityService : Service() {
         }
 
         try {
-            fusedClient.requestLocationUpdates(req, locationCallback, Looper.getMainLooper())
+            locationThread = HandlerThread("LocationThread").also { it.start() }
+            fusedClient.requestLocationUpdates(req, locationCallback, locationThread.looper)
         } catch (e: SecurityException) {
             stopSelf()
         }
     }
 
     private fun onLocation(loc: Location) {
-        // broadcast speed on every update (m/s -> mph)
-        if (loc.hasSpeed()) {
-            val mph = (loc.speed * 2.23694).toInt()
-            sendBroadcast(Intent(ACTION_SPEED).apply { putExtra(EXTRA_SPEED, mph) })
-        }
+        val mph = (loc.speed * 2.23694).toInt()
+        sendBroadcast(Intent(ACTION_SPEED).apply { putExtra(EXTRA_SPEED, mph) })
 
         val flockOnly = prefs.getBoolean(PREF_FLOCK_ONLY, false)
         val nearby = CameraStore.getNearby(loc.latitude, loc.longitude, warnAt, flockOnly)
@@ -77,6 +82,7 @@ class ProximityService : Service() {
                 }
                 broadcastAlert(dist, urgent = true, isFlock = cam.isFlock)
                 if (cam.isFlock && !triggeredIds.contains(cam.id)) {
+                    tts?.speak("Flock detected", TextToSpeech.QUEUE_FLUSH, null, null)
                     triggeredIds.add(cam.id)
                     sessionCount++
                     val lifetime = prefs.getInt(PREF_LIFETIME_COUNT, 0) + 1
@@ -134,7 +140,10 @@ class ProximityService : Service() {
 
     override fun onDestroy() {
         fusedClient.removeLocationUpdates(locationCallback)
+        if (::locationThread.isInitialized) locationThread.quitSafely()
         toneGen.release()
+        tts?.stop()
+        tts?.shutdown()
         super.onDestroy()
     }
 

@@ -163,32 +163,34 @@ class MainActivity : AppCompatActivity() {
     private var locCallback: com.google.android.gms.location.LocationCallback? = null
 
     private fun recenterToMyLocation() {
+        // if overlay already has a fix, snap back immediately
+        locationOverlay.myLocation?.let {
+            map.controller.setZoom(16.0)
+            map.controller.animateTo(it)
+            locationOverlay.enableFollowLocation()
+            return
+        }
+        // no cached fix yet — request one
         try {
             val fusedClient = LocationServices.getFusedLocationProviderClient(this)
-
-            // cancel any pending callback
             locCallback?.let { fusedClient.removeLocationUpdates(it) }
-
             val req = com.google.android.gms.location.LocationRequest.Builder(
-                Priority.PRIORITY_BALANCED_POWER_ACCURACY, 1000L
+                Priority.PRIORITY_HIGH_ACCURACY, 1000L
             ).setMaxUpdates(1).build()
-
             locCallback = object : com.google.android.gms.location.LocationCallback() {
                 override fun onLocationResult(result: com.google.android.gms.location.LocationResult) {
                     result.lastLocation?.let { loc ->
                         fusedClient.removeLocationUpdates(this)
-                        map.controller.setZoom(16.0)
-                        map.controller.animateTo(GeoPoint(loc.latitude, loc.longitude))
-                        locationOverlay.enableFollowLocation()
+                        runOnUiThread {
+                            map.controller.setZoom(16.0)
+                            map.controller.animateTo(GeoPoint(loc.latitude, loc.longitude))
+                            locationOverlay.enableFollowLocation()
+                        }
                     }
                 }
             }
-
             fusedClient.requestLocationUpdates(req, locCallback!!, mainLooper)
-
-        } catch (e: SecurityException) {
-            android.widget.Toast.makeText(this, "Location permission denied", android.widget.Toast.LENGTH_SHORT).show()
-        }
+        } catch (e: SecurityException) { }
     }
 
     private fun showCameraInfo(cam: Camera) {

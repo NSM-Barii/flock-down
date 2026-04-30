@@ -32,8 +32,13 @@ object CameraStore {
     }
 
     fun getNearby(lat: Double, lon: Double, radiusMeters: Double, flockOnly: Boolean): List<Pair<Camera, Double>> {
+        // bounding box pre-filter before expensive haversine — ~0.009 deg ≈ 1km
+        val latDelta = radiusMeters / 111000.0
+        val lonDelta = radiusMeters / (111000.0 * Math.cos(Math.toRadians(lat)))
+        val latMin = lat - latDelta; val latMax = lat + latDelta
+        val lonMin = lon - lonDelta; val lonMax = lon + lonDelta
         return cameras
-            .filter { !flockOnly || it.isFlock }
+            .filter { (!flockOnly || it.isFlock) && it.lat in latMin..latMax && it.lon in lonMin..lonMax }
             .map { it to haversine(lat, lon, it.lat, it.lon) }
             .filter { it.second <= radiusMeters }
             .sortedBy { it.second }
