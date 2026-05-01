@@ -888,7 +888,6 @@ id src_over
 id standard
 id submenuarrow
 id submit_area
-id switchFlockOnly
 id switchShowLifetime
 id switchShowSession
 id tabMode

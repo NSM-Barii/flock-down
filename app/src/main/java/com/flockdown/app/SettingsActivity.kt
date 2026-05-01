@@ -73,11 +73,11 @@ class SettingsActivity : AppCompatActivity() {
             val idx = spinnerState.selectedItemPosition
             val (name, box) = STATE_BOXES[idx]
             val cacheManager = CacheManager(map)
-            val tileCount = cacheManager.possibleTilesInArea(box, 5, 13)
+            val tileCount = cacheManager.possibleTilesInArea(box, 5, 10)
             tvStatus.text = "Downloading ~$tileCount tiles for $name..."
             btnDownloadState.isEnabled = false
 
-            cacheManager.downloadAreaAsync(this, box, 5, 13, object : CacheManager.CacheManagerCallback {
+            cacheManager.downloadAreaAsync(this, box, 5, 10, object : CacheManager.CacheManagerCallback {
                 override fun onTaskComplete() {
                     runOnUiThread {
                         tvStatus.text = "$name cached!"

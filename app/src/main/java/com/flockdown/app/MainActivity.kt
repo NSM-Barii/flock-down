@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.*
 import android.content.pm.PackageManager
 import android.graphics.*
+import android.graphics.Path
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -39,11 +40,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvSession: TextView
     private lateinit var tvTotal: TextView
     private lateinit var layoutFlockAlert: View
-    private lateinit var btnFlockOnly: android.widget.Button
     private lateinit var prefs: SharedPreferences
 
     private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
-    private var flockOnly = false
     private var cameraOverlay: CameraOverlay? = null
 
     private val alertReceiver = object : BroadcastReceiver() {
@@ -83,20 +82,9 @@ class MainActivity : AppCompatActivity() {
         tvSession = findViewById(R.id.tvSession)
         tvTotal = findViewById(R.id.tvTotal)
         layoutFlockAlert = findViewById(R.id.layoutFlockAlert)
-        btnFlockOnly = findViewById(R.id.switchFlockOnly)
 
-        flockOnly = prefs.getBoolean(ProximityService.PREF_FLOCK_ONLY, false)
         tvTotal.text = prefs.getInt(ProximityService.PREF_LIFETIME_COUNT, 0).toString()
-
         applyCounterVisibility()
-        updateFlockToggle()
-
-        btnFlockOnly.setOnClickListener {
-            flockOnly = !flockOnly
-            prefs.edit().putBoolean(ProximityService.PREF_FLOCK_ONLY, flockOnly).apply()
-            updateFlockToggle()
-            reloadOverlay()
-        }
 
         findViewById<android.widget.Button>(R.id.btnSettings).setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java))
@@ -128,6 +116,8 @@ class MainActivity : AppCompatActivity() {
             addLocationSource(android.location.LocationManager.NETWORK_PROVIDER)
         }
         locationOverlay = MyLocationNewOverlay(locationProvider, map)
+        locationOverlay.setPersonIcon(makeLocationArrow())
+        locationOverlay.setDirectionArrow(makeLocationArrow(), makeLocationArrow())
         locationOverlay.enableMyLocation()
         locationOverlay.enableFollowLocation()
         locationOverlay.runOnFirstFix {
@@ -141,16 +131,28 @@ class MainActivity : AppCompatActivity() {
         map.overlays.add(locationOverlay)
     }
 
-    private fun reloadOverlay() {
-        cameraOverlay?.let { map.overlays.remove(it) }
-        loadCameraOverlay()
+    private fun makeLocationArrow(): Bitmap {
+        val size = 72
+        val bmp = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
+        val c = Canvas(bmp)
+        val fill = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.parseColor("#FFEE00"); style = Paint.Style.FILL }
+        val stroke = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.BLACK; style = Paint.Style.STROKE; strokeWidth = 4f }
+        val path = Path().apply {
+            moveTo(size / 2f, 2f)
+            lineTo(size - 6f, size - 6f)
+            lineTo(size / 2f, size - 22f)
+            lineTo(6f, size - 6f)
+            close()
+        }
+        c.drawPath(path, fill)
+        c.drawPath(path, stroke)
+        return bmp
     }
 
     private fun loadCameraOverlay() {
-        val currentFlockOnly = flockOnly
         scope.launch {
             CameraStore.load(this@MainActivity)
-            val cameras = CameraStore.getAll(currentFlockOnly)
+            val cameras = CameraStore.getAll(false)
             val overlay = CameraOverlay(cameras) { cam -> showCameraInfo(cam) }
             withContext(Dispatchers.Main) {
                 cameraOverlay = overlay
@@ -210,18 +212,6 @@ class MainActivity : AppCompatActivity() {
             }
             .setNegativeButton("Close", null)
             .show()
-    }
-
-    private fun updateFlockToggle() {
-        if (flockOnly) {
-            btnFlockOnly.text = "FLOCK ONLY"
-            btnFlockOnly.backgroundTintList = android.content.res.ColorStateList.valueOf(Color.parseColor("#CC FF0000".replace(" ", "")))
-            btnFlockOnly.setTextColor(Color.WHITE)
-        } else {
-            btnFlockOnly.text = "ALL CAMERAS"
-            btnFlockOnly.backgroundTintList = android.content.res.ColorStateList.valueOf(Color.parseColor("#AA000000"))
-            btnFlockOnly.setTextColor(Color.parseColor("#AAAAAA"))
-        }
     }
 
     private fun applyCounterVisibility() {

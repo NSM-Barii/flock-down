@@ -88,20 +88,6 @@
 
         </LinearLayout>
 
-        <!-- Flock-only toggle button -->
-        <Button
-            android:id="@+id/switchFlockOnly"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ALL CAMERAS"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:backgroundTint="#AA000000"
-            android:textColor="#AAAAAA"
-            android:layout_marginTop="4dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp" />
-
     </LinearLayout>
 
     <!-- Bottom-left nav buttons -->

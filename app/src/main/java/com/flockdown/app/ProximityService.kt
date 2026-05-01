@@ -21,6 +21,7 @@ class ProximityService : Service() {
     private val toneGen by lazy { ToneGenerator(AudioManager.STREAM_MUSIC, 100) }
     private var tts: TextToSpeech? = null
 
+    private var prevLocation: Location? = null
     private var lastBeepTime = 0L
     private val beepCooldownMs = 10_000L
     private val warnAt = 500.0
@@ -60,12 +61,25 @@ class ProximityService : Service() {
         }
     }
 
-    private fun onLocation(loc: Location) {
-        val mph = (loc.speed * 2.23694).toInt()
-        sendBroadcast(Intent(ACTION_SPEED).apply { putExtra(EXTRA_SPEED, mph) })
+    private fun speedMph(loc: Location): Int {
+        val speedMs = if (loc.speed > 0.5f) {
+            loc.speed.toDouble()
+        } else {
+            val prev = prevLocation
+            if (prev != null && loc.time > prev.time) {
+                val dist = prev.distanceTo(loc).toDouble()
+                val secs = (loc.time - prev.time) / 1000.0
+                if (secs > 0) dist / secs else 0.0
+            } else 0.0
+        }
+        prevLocation = loc
+        return (speedMs * 2.23694).toInt()
+    }
 
-        val flockOnly = prefs.getBoolean(PREF_FLOCK_ONLY, false)
-        val nearby = CameraStore.getNearby(loc.latitude, loc.longitude, warnAt, flockOnly)
+    private fun onLocation(loc: Location) {
+        sendBroadcast(Intent(ACTION_SPEED).apply { putExtra(EXTRA_SPEED, speedMph(loc)) })
+
+        val nearby = CameraStore.getNearby(loc.latitude, loc.longitude, warnAt, false)
         if (nearby.isEmpty()) return
 
         val (cam, dist) = nearby.first()

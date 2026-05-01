@@ -24,7 +24,7 @@ class CameraOverlay(
         strokeWidth = 2f
     }
     private val paintOther = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = Color.parseColor("#888888")
+        color = Color.parseColor("#FF8800")
         style = Paint.Style.FILL
     }
 

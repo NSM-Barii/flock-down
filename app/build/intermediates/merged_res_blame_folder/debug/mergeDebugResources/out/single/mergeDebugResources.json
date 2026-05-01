@@ -20,8 +20,8 @@
         "source": "/Users/jabarilucien/.gradle/daemon/9.0.0/com.flockdown.app-main-27:/xml/network_security_config.xml"
     },
     {
-        "merged": "com.flockdown.app-debug-25:/layout_activity_settings.xml.flat",
-        "source": "com.flockdown.app-main-27:/layout/activity_settings.xml"
+        "merged": "com.flockdown.app-debug-25:/layout_activity_main.xml.flat",
+        "source": "com.flockdown.app-main-27:/layout/activity_main.xml"
     },
     {
         "merged": "/Users/jabarilucien/.gradle/daemon/9.0.0/com.flockdown.app-debug-25:/raw_alpr_cameras.csv.flat",
