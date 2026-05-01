@@ -83,6 +83,25 @@ class ProximityService : Service() {
         if (nearby.isEmpty()) return
 
         val (cam, dist) = nearby.first()
+
+        // counter + TTS run independently of beep cooldown
+        if (dist <= alertAt && cam.isFlock && !triggeredIds.contains(cam.id)) {
+            triggeredIds.add(cam.id)
+            sessionCount++
+            val lifetime = prefs.getInt(PREF_LIFETIME_COUNT, 0) + 1
+            prefs.edit().putInt(PREF_LIFETIME_COUNT, lifetime).apply()
+            broadcastCounts(sessionCount, lifetime)
+            tts?.speak("Flock detected", TextToSpeech.QUEUE_FLUSH, null, null)
+            LogStore.add(this, LogEntry(
+                cameraId = cam.id,
+                lat = cam.lat,
+                lon = cam.lon,
+                isFlock = cam.isFlock,
+                timestamp = System.currentTimeMillis()
+            ))
+        }
+
+        // beep cooldown only gates the audio/visual alert
         val now = SystemClock.elapsedRealtime()
         if (now - lastBeepTime < beepCooldownMs) return
         lastBeepTime = now
@@ -95,21 +114,6 @@ class ProximityService : Service() {
                     toneGen.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 400)
                 }
                 broadcastAlert(dist, urgent = true, isFlock = cam.isFlock)
-                if (cam.isFlock && !triggeredIds.contains(cam.id)) {
-                    tts?.speak("Flock detected", TextToSpeech.QUEUE_FLUSH, null, null)
-                    triggeredIds.add(cam.id)
-                    sessionCount++
-                    val lifetime = prefs.getInt(PREF_LIFETIME_COUNT, 0) + 1
-                    prefs.edit().putInt(PREF_LIFETIME_COUNT, lifetime).apply()
-                    broadcastCounts(sessionCount, lifetime)
-                    LogStore.add(this, LogEntry(
-                        cameraId = cam.id,
-                        lat = cam.lat,
-                        lon = cam.lon,
-                        isFlock = cam.isFlock,
-                        timestamp = System.currentTimeMillis()
-                    ))
-                }
             }
             dist <= warnAt -> {
                 if (cam.isFlock) {

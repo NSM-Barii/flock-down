@@ -135,7 +135,7 @@ class MainActivity : AppCompatActivity() {
         val size = 72
         val bmp = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
         val c = Canvas(bmp)
-        val fill = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.parseColor("#FFEE00"); style = Paint.Style.FILL }
+        val fill = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.parseColor("#0088FF"); style = Paint.Style.FILL }
         val stroke = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.BLACK; style = Paint.Style.STROKE; strokeWidth = 4f }
         val path = Path().apply {
             moveTo(size / 2f, 2f)
