@@ -110,6 +110,42 @@
 
         </LinearLayout>
 
+        <!-- Alert distance section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ALERT DISTANCE"
+            android:textColor="#888888"
+            android:textSize="12sp"
+            android:letterSpacing="0.1"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#1E1E1E"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="How early to warn you about a camera"
+                android:textColor="#888888"
+                android:textSize="12sp"
+                android:layout_marginBottom="12dp" />
+
+            <Spinner
+                android:id="@+id/spinnerAlertDistance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#2A2A2A"
+                android:padding="8dp"
+                android:popupBackground="#2A2A2A" />
+
+        </LinearLayout>
+
         <!-- Offline maps section -->
         <TextView
             android:layout_width="wrap_content"

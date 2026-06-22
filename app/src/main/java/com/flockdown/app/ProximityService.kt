@@ -8,6 +8,7 @@ import android.media.AudioManager
 import android.os.*
 import android.location.Location
 import android.speech.tts.TextToSpeech
+import com.flockdown.app.SettingsActivity
 import androidx.core.app.NotificationCompat
 import com.google.android.gms.location.*
 import java.util.Locale
@@ -24,8 +25,17 @@ class ProximityService : Service() {
     private var prevLocation: Location? = null
     private var lastBeepTime = 0L
     private val beepCooldownMs = 10_000L
-    private val warnAt = 500.0
-    private val alertAt = 150.0
+
+    private val warnAt: Double
+        get() {
+            val idx = prefs.getInt(SettingsActivity.PREF_ALERT_PRESET, 2)
+            return SettingsActivity.ALERT_PRESETS.getOrElse(idx) { SettingsActivity.ALERT_PRESETS[2] }.second
+        }
+    private val alertAt: Double
+        get() {
+            val idx = prefs.getInt(SettingsActivity.PREF_ALERT_PRESET, 2)
+            return SettingsActivity.ALERT_PRESETS.getOrElse(idx) { SettingsActivity.ALERT_PRESETS[2] }.third
+        }
 
     private var sessionCount = 0
     private val triggeredIds = mutableSetOf<Long>()

@@ -66,6 +66,18 @@ class SettingsActivity : AppCompatActivity() {
                 .show()
         }
 
+        val spinnerAlert = findViewById<Spinner>(R.id.spinnerAlertDistance)
+        val alertOptions = ALERT_PRESETS.map { it.first }
+        spinnerAlert.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, alertOptions)
+        val savedAlert = prefs.getInt(PREF_ALERT_PRESET, 1)
+        spinnerAlert.setSelection(savedAlert)
+        spinnerAlert.onItemSelectedListener = object : android.widget.AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: android.widget.AdapterView<*>, view: android.view.View?, pos: Int, id: Long) {
+                prefs.edit().putInt(PREF_ALERT_PRESET, pos).apply()
+            }
+            override fun onNothingSelected(parent: android.widget.AdapterView<*>) {}
+        }
+
         val stateNames = STATE_BOXES.map { it.first }
         spinnerState.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, stateNames)
 
@@ -107,6 +119,15 @@ class SettingsActivity : AppCompatActivity() {
     companion object {
         const val PREF_SHOW_SESSION = "show_session"
         const val PREF_SHOW_LIFETIME = "show_lifetime"
+        const val PREF_ALERT_PRESET = "alert_preset"
+
+        // (label, warnMeters, alertMeters)
+        val ALERT_PRESETS = listOf(
+            Triple("Very Early (~1 mile)",  1600.0, 500.0),
+            Triple("Early (~2600ft)",        800.0, 250.0),
+            Triple("Normal (~1600ft)",       500.0, 150.0),
+            Triple("Close (~800ft)",         250.0,  75.0)
+        )
 
         // (name, BoundingBox(north, east, south, west))
         val STATE_BOXES = listOf(

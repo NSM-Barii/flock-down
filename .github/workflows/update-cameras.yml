@@ -1,0 +1,38 @@
+name: Update Camera Database
+
+on:
+  schedule:
+    - cron: '0 6 * * 5'  # every Friday at 6am UTC
+  workflow_dispatch:      # allow manual trigger from GitHub Actions tab
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Download fresh ALPR data from OpenStreetMap
+        run: |
+          curl -X POST "https://overpass.kumi.systems/api/interpreter" \
+            -H "Content-Type: application/x-www-form-urlencoded" \
+            --data-urlencode 'data=[out:json][timeout:300];node["surveillance:type"="ALPR"];out body;' \
+            -o alpr_cameras.json --max-time 360
+          echo "Downloaded $(wc -c < alpr_cameras.json) bytes"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Rebuild CSV
+        run: python3 scripts/build_csv.py
+
+      - name: Commit updated database
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add app/src/main/res/raw/alpr_cameras.csv
+          git diff --staged --quiet && echo "No changes." || \
+            git commit -m "chore: update camera database $(date +%Y-%m-%d)" && git push
