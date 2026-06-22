@@ -8,9 +8,9 @@
 
 ---
 
-## Seen in the wild
+## The video that started it all
 
-[Watch the original reel (2.5M views)](https://www.instagram.com/p/DZvbp4dSuSg/)
+[Watch on Instagram (2.5M views)](https://www.instagram.com/p/DZvbp4dSuSg/)
 
 ---
 
@@ -26,9 +26,9 @@ This app does not record, transmit, or store any data outside of your device.
 
 | Tool | Description |
 |------|-------------|
-| [dooku](https://github.com/nsm-barii/dooku) | Portable wardriving rig — Raspberry Pi 5, 4× WiFi adapters, BLE, GPS, RTL-SDR in a hardened case |
-| [flock-back](https://github.com/nsm-barii/flock-back) | Detects Flock Safety cameras via BLE/WiFi |
-| **flock-down** | In-car map with real-time Flock camera proximity alerts |
+| [dooku](https://github.com/nsm-barii/dooku) | Portable wardriving rig used to physically locate and map Flock Safety cameras while driving |
+| [flock-back](https://github.com/nsm-barii/flock-back) | PC/laptop program that detects nearby Flock Safety cameras via BLE and WiFi signals |
+| **flock-down** | In-car Android app that alerts you in real time when driving past a Flock camera |
 
 ---
 
